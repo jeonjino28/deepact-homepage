@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepact 🦫</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B2A4A;
+  --amber: #C87941;
+  --teal: #2A7F6F;
+  --bg: #F4F6FB;
+  --white: #FFFFFF;
+  --gray: #6B7280;
+  --light-navy: #E8ECF8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--bg);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ── 네비 ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(244,246,251,0.92);
+  backdrop-filter: blur(12px);
+  padding: 16px 48px;
+  display: flex; align-items: center;
+  border-bottom: 1px solid rgba(27,42,74,0.08);
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--amber); }
+.nav-menu { margin-left: auto; display: flex; gap: 32px; align-items: center; }
+.nav-menu a {
+  font-size: 14px; color: var(--gray);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-menu a:hover { color: var(--navy); }
+.nav-cta {
+  background: var(--amber); color: var(--white) !important;
+  padding: 10px 22px; border-radius: 24px;
+  font-size: 13px !important; font-weight: 500;
+  transition: opacity 0.2s !important;
+}
+.nav-cta:hover { opacity: 0.88; }
+
+/* ── 히어로 ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+  padding: 120px 48px 80px;
+  position: relative; overflow: hidden;
+}
+.hero-deco {
+  position: absolute; right: -80px; top: 50%;
+  transform: translateY(-50%);
+  width: 520px; height: 520px;
+  background: var(--navy); border-radius: 50%;
+  opacity: 0.06;
+}
+.hero-deco2 {
+  position: absolute; right: 120px; bottom: 60px;
+  width: 200px; height: 200px;
+  background: var(--amber); border-radius: 50%;
+  opacity: 0.08;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--light-navy);
+  color: var(--navy); font-size: 13px; font-weight: 500;
+  padding: 8px 16px; border-radius: 20px;
+  margin-bottom: 32px;
+  animation: fadeUp 0.6s ease both;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 900; line-height: 1.15;
+  color: var(--navy); max-width: 700px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.6s ease 0.1s both;
+}
+.hero h1 em { color: var(--amber); font-style: normal; }
+.hero p {
+  font-size: 18px; color: var(--gray);
+  line-height: 1.8; max-width: 500px;
+  margin-bottom: 40px;
+  animation: fadeUp 0.6s ease 0.2s both;
+  font-weight: 300;
+}
+.hero-btns {
+  display: flex; gap: 14px;
+  animation: fadeUp 0.6s ease 0.3s both;
+}
+.btn-primary {
+  background: var(--navy); color: var(--white);
+  padding: 14px 28px; border-radius: 28px;
+  font-size: 15px; font-weight: 500;
+  text-decoration: none; transition: transform 0.2s, opacity 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+.btn-secondary {
+  background: transparent; color: var(--navy);
+  padding: 14px 28px; border-radius: 28px;
+  font-size: 15px; border: 1.5px solid var(--navy);
+  text-decoration: none; transition: transform 0.2s;
+}
+.btn-secondary:hover { transform: translateY(-2px); }
+
+/* ── 철학 ── */
+.philosophy {
+  background: var(--navy);
+  padding: 100px 48px;
+}
+.section-label {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 20px;
+}
+.philosophy .section-label { color: rgba(200,121,65,0.8); }
+.philosophy h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--white); margin-bottom: 60px;
+  max-width: 600px; line-height: 1.3;
+}
+.pillars {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; max-width: 900px;
+}
+.pillar {
+  border-left: 3px solid var(--amber);
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 0 12px 12px 0;
+}
+.pillar-word {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px; font-weight: 700;
+  color: var(--amber); margin-bottom: 12px;
+}
+.pillar-title {
+  font-size: 15px; font-weight: 500;
+  color: var(--white); margin-bottom: 8px;
+}
+.pillar-desc {
+  font-size: 13px; color: rgba(255,255,255,0.55);
+  line-height: 1.7; font-weight: 300;
+}
+
+/* ── 서비스 ── */
+.services { padding: 100px 48px; }
+.services h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--navy); margin-bottom: 12px;
+}
+.services .sub {
+  font-size: 16px; color: var(--gray);
+  margin-bottom: 60px; font-weight: 300;
+}
+.service-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.service-card {
+  background: var(--white);
+  border-radius: 20px; padding: 36px 32px;
+  border-top: 4px solid;
+  transition: transform 0.25s, box-shadow 0.25s;
+  text-decoration: none; color: inherit;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(27,42,74,0.10);
+}
+.service-card.c1 { border-top-color: var(--amber); }
+.service-card.c2 { border-top-color: var(--navy); }
+.service-card.c3 { border-top-color: var(--teal); }
+.service-icon { font-size: 28px; margin-bottom: 20px; }
+.service-name {
+  font-size: 20px; font-weight: 700;
+  color: var(--navy); margin-bottom: 8px;
+}
+.service-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 500;
+  padding: 4px 10px; border-radius: 12px;
+  margin-bottom: 16px;
+}
+.c1 .service-tag { background: #FDF5EC; color: var(--amber); }
+.c2 .service-tag { background: var(--light-navy); color: var(--navy); }
+.c3 .service-tag { background: #E6F4F1; color: var(--teal); }
+.service-desc {
+  font-size: 14px; color: var(--gray);
+  line-height: 1.7; font-weight: 300;
+}
+.service-link {
+  display: inline-block; margin-top: 20px;
+  font-size: 13px; font-weight: 500;
+}
+.c1 .service-link { color: var(--amber); }
+.c2 .service-link { color: var(--navy); }
+.c3 .service-link { color: var(--teal); }
+
+/* ── 대표자 ── */
+.about {
+  background: var(--light-navy);
+  padding: 100px 48px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--navy); margin-bottom: 24px;
+  line-height: 1.2;
+}
+.about-text p {
+  font-size: 16px; color: var(--gray);
+  line-height: 1.9; font-weight: 300;
+  margin-bottom: 32px;
+}
+.about-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.about-tag {
+  background: var(--white); color: var(--navy);
+  font-size: 13px; font-weight: 500;
+  padding: 8px 16px; border-radius: 20px;
+}
+.about-quote {
+  background: var(--navy);
+  border-radius: 24px; padding: 48px;
+}
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; color: var(--white);
+  line-height: 1.6; margin-bottom: 24px;
+  font-style: italic;
+}
+.quote-author {
+  font-size: 14px; color: var(--amber);
+  font-weight: 500;
+}
+.capybara {
+  font-size: 48px; margin-bottom: 20px;
+  display: block;
+}
+
+/* ── CTA ── */
+.cta {
+  background: var(--amber);
+  padding: 100px 48px; text-align: center;
+}
+.cta h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 56px);
+  color: var(--white); margin-bottom: 20px;
+}
+.cta p {
+  font-size: 18px; color: rgba(255,255,255,0.82);
+  margin-bottom: 40px; font-weight: 300;
+}
+.cta-btns { display: flex; justify-content: center; gap: 14px; }
+.cta-primary {
+  background: var(--white); color: var(--amber);
+  padding: 16px 36px; border-radius: 32px;
+  font-size: 16px; font-weight: 700;
+  text-decoration: none; transition: transform 0.2s;
+}
+.cta-primary:hover { transform: translateY(-2px); }
+.cta-secondary {
+  background: transparent; color: var(--white);
+  padding: 16px 36px; border-radius: 32px;
+  font-size: 16px; border: 2px solid rgba(255,255,255,0.5);
+  text-decoration: none; transition: transform 0.2s;
+}
+.cta-secondary:hover { transform: translateY(-2px); }
+
+/* ── 푸터 ── */
+footer {
+  background: var(--navy);
+  padding: 48px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px; font-weight: 700; color: var(--white);
+}
+.footer-logo span { color: var(--amber); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 13px; color: rgba(255,255,255,0.45);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-copy {
+  font-size: 12px; color: rgba(255,255,255,0.3);
+}
+
+/* ── 애니메이션 ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+/* ── 반응형 ── */
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  .nav-menu { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .philosophy { padding: 60px 24px; }
+  .pillars { grid-template-columns: 1fr; }
+  .services { padding: 60px 24px; }
+  .service-grid { grid-template-columns: 1fr; }
+  .about { padding: 60px 24px; grid-template-columns: 1fr; gap: 40px; }
+  .cta { padding: 60px 24px; }
+  .cta-btns { flex-direction: column; align-items: center; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- 네비 -->
+<nav>
+  <a href="#" class="nav-logo">Deep<span>act</span> 🦫</a>
+  <div class="nav-menu">
+    <a href="#philosophy">철학</a>
+    <a href="#services">서비스</a>
+    <a href="#about">대표자</a>
+    <a href="#contact" class="nav-cta">문의하기</a>
+  </div>
+</nav>
+
+<!-- 히어로 -->
+<section class="hero">
+  <div class="hero-deco"></div>
+  <div class="hero-deco2"></div>
+  <div class="hero-tag">🦫 Deepact</div>
+  <h1>아픔을 아는 사람이,<br>천천히 그리고 <em>깊게</em>,<br>세상을 바꾼다.</h1>
+  <p>사람을 먼저 만나고, 공인된 방법으로 설계하고,<br>데이터로 증명하는 마음건강 브랜드입니다.</p>
+  <div class="hero-btns">
+    <a href="#services" class="btn-primary">서비스 보기</a>
+    <a href="#contact" class="btn-secondary">문의하기</a>
+  </div>
+</section>
+
+<!-- 철학 -->
+<section class="philosophy reveal" id="philosophy">
+  <div class="section-label">Brand Philosophy</div>
+  <h2>깊이 있는 실행으로<br>진짜 변화를 만듭니다</h2>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-word">Deep</div>
+      <div class="pillar-title">깊이</div>
+      <div class="pillar-desc">표면이 아닌 근본을 봅니다. 빠른 해결보다 깊은 이해가 먼저입니다.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-word">Slow</div>
+      <div class="pillar-title">느림</div>
+      <div class="pillar-desc">느리게 가도 깊게 갑니다. 서두르지 않지만 멈추지 않습니다.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-word">Act</div>
+      <div class="pillar-title">실행</div>
+      <div class="pillar-desc">생각에 그치지 않고 실행합니다. 말보다 만든 것이 증거입니다.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 서비스 -->
+<section class="services reveal" id="services">
+  <div class="section-label">Services</div>
+  <h2>Deepact 서비스</h2>
+  <p class="sub">아픔을 아는 사람이 만드는 세 가지 솔루션</p>
+  <div class="service-grid">
+    <a href="#" class="service-card c1">
+      <div class="service-icon">🔥</div>
+      <div class="service-name">TeamPulse</div>
+      <span class="service-tag">B2B SaaS · 준비 중</span>
+      <p class="service-desc">공인 척도 기반 직장인 번아웃 예방 서비스. 팀의 맥박을 측정합니다. 번아웃이 오기 전에.</p>
+      <span class="service-link">자세히 보기 →</span>
+    </a>
+    <a href="https://mind-keeper-eight.vercel.app" target="_blank" class="service-card c2">
+      <div class="service-icon">🧠</div>
+      <div class="service-name">MindKeeper</div>
+      <span class="service-tag">베타 운영 중</span>
+      <p class="service-desc">AI 마음 패턴 분석 청년 마음건강 플랫폼. 11개 공인 심리척도 기반 자가진단.</p>
+      <span class="service-link">지금 체험하기 →</span>
+    </a>
+    <a href="#contact" class="service-card c3">
+      <div class="service-icon">📖</div>
+      <div class="service-name">회고록 서비스</div>
+      <span class="service-tag">문의 가능</span>
+      <p class="service-desc">어르신의 인생 이야기를 인터뷰해서 책과 영상으로 만들어드립니다.</p>
+      <span class="service-link">문의하기 →</span>
+    </a>
+  </div>
+</section>
+
+<!-- 대표자 -->
+<section class="about reveal" id="about">
+  <div class="about-text">
+    <div class="section-label">Founder</div>
+    <h2>아픔을 직접<br>경험한 사람이<br>만듭니다</h2>
+    <p>사회복지사로 2년간 현장에서 마음이 힘든 사람들을 만났습니다. 코딩 경험 없이 3일 만에 마음건강 앱을 만들고 배포했습니다. 빠르게 성장하는 것보다 진짜 필요한 곳에 닿는 것을 믿는 사람이 만드는 브랜드입니다.</p>
+    <div class="about-tags">
+      <span class="about-tag">🎓 상담심리학 전공</span>
+      <span class="about-tag">💼 사회복지사 2년</span>
+      <span class="about-tag">📱 MindKeeper 개발자</span>
+      <span class="about-tag">🦫 Deepact 대표</span>
+    </div>
+    <div style="margin-top:24px; display:flex; flex-direction:column; gap:10px;">
+      <a href="https://instagram.com/deep.act_" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--navy); text-decoration:none; font-weight:500;">📸 @deep.act_</a>
+      <a href="mailto:ojeonjin953@gmail.com" style="display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--navy); text-decoration:none; font-weight:500;">✉️ ojeonjin953@gmail.com</a>
+    </div>
+  </div>
+  <div class="about-quote">
+    <span class="capybara">🦫</span>
+    <div class="quote-text">"아픔을 아는 사람이, 천천히 그리고 깊게, 세상을 바꾼다."</div>
+    <div class="quote-author">오전진 · Deepact 대표</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta reveal" id="contact">
+  <h2>함께 만들어가요</h2>
+  <p>협업 제안, 서비스 문의, 강의 요청 무엇이든 환영합니다</p>
+  <div class="cta-btns">
+    <a href="mailto:ojeonjin953@gmail.com" class="cta-primary">이메일 보내기</a>
+    <a href="https://instagram.com/deep.act_" target="_blank" class="cta-secondary">인스타그램 팔로우</a>
+  </div>
+</section>
+
+<!-- 푸터 -->
+<footer>
+  <div class="footer-logo">Deep<span>act</span> 🦫</div>
+  <div class="footer-links">
+    <a href="https://mind-keeper-eight.vercel.app" target="_blank">MindKeeper</a>
+    <a href="https://instagram.com/deep.act_" target="_blank">Instagram</a>
+    <a href="#" target="_blank">Blog</a>
+  </div>
+  <div class="footer-copy">© 2026 Deepact. All rights reserved.</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
